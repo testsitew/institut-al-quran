@@ -1,543 +1,292 @@
 <!DOCTYPE html>
-<html lang="fr" dir="rtl">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institut Al-Quran - تعلم القرآن الكريم</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Institut Al-Quran - تعليم اللغة العربية والقرآن عن بعد</title>
+    <link href="[cdn.jsdelivr.net](https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css)" rel="stylesheet">
+    <link href="[cdnjs.cloudflare.com](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)" rel="stylesheet">
+    <script src="[cdn.jsdelivr.net](https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js)"></script>
+    <script src="[cdn.emailjs.com](https://cdn.emailjs.com/dist/email.min.js)"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Cairo', sans-serif; 
-            line-height: 1.6; 
-            color: #333; 
-            direction: rtl; 
-            background: #f8f9fa; 
-        }
-      
-
-        /* HEADER + NAVIGATION */
-        header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo { 
-            font-size: 2rem; 
-            font-weight: 700; 
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-
-        .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        .btn-login, .btn-inscription {
-            background: linear-gradient(135deg, #ff6b35, #f7931e);
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* SECTIONS */
-        .section {
-            min-height: 100vh;
-            padding: 120px 2rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* ACCUEIL */
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            color: #1e3c72;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #1e3c72, #ff6b35);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            color: #666;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            padding: 1.2rem 3rem;
-            background: linear-gradient(135deg, #ff6b35, #f7931e);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255,107,53,0.4);
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3rem;
-            color: #ff6b35;
-            margin-bottom: 0.5rem;
-        }
-
-        /* NIVEAUX */
-        .niveaux-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-
-        .niveau-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: all 0.3s;
-            border-top: 5px solid transparent;
-        }
-
-        .niveau-gratuit { border-top-color: #4CAF50; }
-        .niveau-payant { border-top-color: #ff6b35; }
-
-        .niveau-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-        }
-
-        .niveau-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .prix {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ff6b35;
-            margin: 1rem 0;
-        }
-
-        /* FORMULAIRES */
-        .form-container {
-            background: white;
-            padding: 3rem;
-            border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-width: 500px;
-            margin: 2rem auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: right;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #1e3c72;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: 'Cairo', sans-serif;
-            transition: all 0.3s;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #ff6b35;
-            box-shadow: 0 0 0 3px rgba(255,107,53,0.1);
-        }
-
-        /* TÉMOIGNAGES */
-        .temoignages {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 5rem 0;
-        }
-
-        .temoignages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .temoignage-card {
-            background: rgba(255,255,255,0.1);
-            padding: 2.5rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .stars {
-            color: #ffd700;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* ENSEIGNANTS */
-        .enseignants-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .enseignant-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-
-        .enseignant-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .enseignant-img {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #1e3c72, #ff6b35);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-        }
-
-        /* SESSIONS */
-        .sessions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .session-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .session-status {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .ouvert { background: #4CAF50; color: white; }
-        .ferme { background: #f44336; color: white; }
-
-        /* DASHBOARD */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .dash-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-        }
-
-        /* CONTACT */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin: 3rem 0;
-        }
-
-        .contact-info {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: #1e3c72;
-                flex-direction: column;
-                padding: 2rem;
-            }
-
-            .nav-links.active { display: flex; }
-
-            .mobile-menu { display: block; }
-
-            .hero h1 { font-size: 2.5rem; }
-            .cta-buttons { flex-direction: column; align-items: center; }
-        }
+        body { font-family: 'Arial', sans-serif; background: linear-gradient(135deg, #f8f9fa, #e9ecef); }
+        .logo { font-size: 2.5rem; font-weight: bold; color: #28a745; }
+        .section { padding: 60px 0; }
+        .level-card { transition: transform 0.3s; }
+        .level-card:hover { transform: scale(1.05); }
+        .chat-box { border: 1px solid #ddd; height: 300px; overflow-y: scroll; padding: 10px; background: #f8f9fa; }
+        .exercise { border: 2px dashed #28a745; padding: 20px; margin: 10px 0; }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <nav>
-            <div class="logo">
-                <i class="fas fa-book-open"></i>
-                Institut Al-Quran
-            </div>
-            <ul class="nav-links">
-                <a href="#" onclick="showSection('accueil')"><i class="fas fa-home"></i> Acceuil</a>
-                <a href="#" onclick="showSection('niveaux')"><i class="fas fa-layer-group"></i> Niveau</a>
-                <a href="#" onclick="showSection('sessions')"><i class="fas fa-calendar-alt"></i> seance</a>
-                <a href="#" onclick="showSection('enseignants')"><i class="fas fa-chalkboard-teacher"></i> enseignants</a>
-                <a href="#" onclick="showSection('temoignages')"><i class="fas fa-quote-left"></i> Témoignages</a>
-                <a href="#" onclick="showSection('contact')"><i class="fas fa-phone"></i> Contact</a>
-                <a href="#" onclick="showSection('connexion')" class="btn-login"><i class="fas fa-sign-in-alt"></i> connexion</a>
-                <a href="#" onclick="showSection('inscription')" class="btn-inscription"><i class="fas fa-user-plus"></i> inscription</a>
-            </ul>
-            <div class="mobile-menu" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
-    </header>
-
-    <!-- 1. ACCUEIL -->
-<section id="accueil" class="section active">
-    <div class="container">
-        <div class="hero">
-            <h1>🎓 Apprenez le Coran avec les meilleurs professeurs</h1>
-            <p>Programmes complets pour l'apprentissage du Tajwid et la mémorisation du Coran du débutant au professionnel avec certificats certifiés</p>
-            <div class="cta-buttons">
-                <a href="#" onclick="showSection('niveaux')" class="btn-primary">
-                    <i class="fas fa-play-circle"></i> Commencer maintenant
-                </a>
-                <a href="#" onclick="showSection('inscription')" class="btn-primary" style="background: linear-gradient(135deg, #4CAF50, #45a049);">
-                    <i class="fas fa-crown"></i> Séance gratuite
-                </a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand logo" href="#home">Institut Al-Quran</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#teachers">المعلمون</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#payments">الدفع</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#levels">المستويات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">آراء</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">اتصل</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="toggleLogin()">دخول/تسجيل</a></li>
+                </ul>
             </div>
         </div>
+    </nav>
 
-        <div class="stats">
-            <div class="stat-item">
-                <h3>5000+</h3>
-                <p>Élèves inscrits</p>
-            </div>
-            <div class="stat-item">
-                <h3>150+</h3>
-                <p>Professeurs qualifiés</p>
-            </div>
-            <div class="stat-item">
-                <h3>98%</h3>
-                <p>Taux de satisfaction</p>
-            </div>
-            <div class="stat-item">
-                <h3>24/7</h3>
-                <p>Support continu</p>
-            </div>
+    <!-- Hero / Accueil -->
+    <section id="home" class="section bg-primary text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4 mb-4">مرحباً بك في معهد القرآن</h1>
+            <p class="lead">تعليم اللغة العربية والقرآن الكريم عن بعد للأطفال بطريقة ممتعة وفعالة.</p>
+            <button class="btn btn-light btn-lg mb-3" onclick="toggleLogin()">ابدأ الآن - تسجيل/دخول</button>
         </div>
+    </section>
 
-        <div class="niveaux-grid">
-            <div class="niveau-card niveau-gratuit">
-                <div class="niveau-icon">👑</div>
-                <h3>Niveau Débutant</h3>
-                <p>Tajwid de base et récitation des sourates courtes</p>
-                <div class="prix">🆓 Gratuit</div>
-                <button class="btn-primary" onclick="showSection('inscription')">S'inscrire maintenant</button>
-            </div>
-            <div class="niveau-card niveau-payant">
-                <div class="niveau-icon">⭐</div>
-                <h3>Niveau Intermédiaire</h3>
-                <p>Mémorisation et Tajwid avancé avec règles du Tajwid</p>
-                <div class="prix">99€/mois</div>
-                <button class="btn-primary" onclick="showSection('inscription')">S'inscrire maintenant</button>
-            </div>
-            <div class="niveau-card niveau-payant">
-                <div class="niveau-icon">💎</div>
-                <h3>Niveau Professionnel</h3>
-                <p>Mémorisation complète + Tafsir + Enseignement</p>
-                <div class="prix">199€/mois</div>
-                <button class="btn-primary" onclick="showSection('inscription')">S'inscrire maintenant</button>
+    <!-- Modal Login/Register -->
+    <div class="modal fade" id="authModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تسجيل / دخول</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3"><input type="text" class="form-control" id="regName" placeholder="الاسم" required></div>
+                        <div class="mb-3"><input type="email" class="form-control" id="regEmail" placeholder="البريد الإلكتروني" required></div>
+                        <div class="mb-3"><input type="password" class="form-control" id="regPass" placeholder="كلمة السر" required></div>
+                        <button type="submit" class="btn btn-success w-100">تسجيل جديد</button>
+                    </form>
+                    <hr>
+                    <form id="loginForm" style="display:none;">
+                        <div class="mb-3"><input type="email" class="form-control" id="loginEmail" placeholder="البريد" required></div>
+                        <div class="mb-3"><input type="password" class="form-control" id="loginPass" placeholder="كلمة السر" required></div>
+                        <button type="submit" class="btn btn-primary w-100">دخول</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</section>
 
-<!-- 2. INSCRIPTION -->
-<section id="inscription" class="section">
-    <div class="container">
-        <div class="form-container">
-            <h2 style="font-size: 2.5rem; color: #1e3c72; margin-bottom: 2rem; text-align: center;">
-                <i class="fas fa-user-plus"></i> Nouvelle Inscription
-            </h2>
-            <form id="formInscription">
-                <div class="form-group">
-                    <label>Nom et Prénom complet</label>
-                    <input type="text" class="form-input" required>
+    <!-- Enseignants -->
+    <section id="teachers" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5">المعلمون</h2>
+            <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                    <i class="fas fa-chalkboard-teacher fa-4x text-success mb-3"></i>
+                    <h4>الأستاذ محمد</h4>
+                    <p>خبير في تجويد القرآن. دروس تفاعلية للأطفال.</p>
                 </div>
-                <div class="form-group">
-                    <label>Adresse e-mail</label>
-                    <input type="email" class="form-input" required>
+                <div class="col-md-4 text-center mb-4">
+                    <i class="fas fa-book-open fa-4x text-success mb-3"></i>
+                    <h4>الأستاذة فاطمة</h4>
+                    <p>تعليم اللغة العربية من الصفر إلى الاحتراف.</p>
                 </div>
-                <div class="form-group">
-                    <label>Numéro de téléphone</label>
-                    <input type="tel" class="form-input" required>
+                <!-- Ajoutez plus -->
+            </div>
+            <!-- Zone écriture pour enseignants -->
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <h5>للمعلمين: طرح أسئلة</h5>
+                    <textarea class="form-control" placeholder="اكتب سؤالاً للطلاب..." id="teacherQuestion"></textarea>
+                    <button class="btn btn-outline-success mt-2" onclick="postQuestion()">نشر السؤال</button>
+                    <div id="questionsList" class="mt-3"></div>
                 </div>
-                <div class="form-group">
-                    <label>Mot de passe</label>
-                    <input type="password" class="form-input" required>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paiements -->
+    <section id="payments" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">الدفع</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>إدخال المعلومات البنكية</h5>
+                            <form id="paymentForm">
+                                <div class="mb-3"><input type="text" class="form-control" placeholder="رقم البطاقة" required></div>
+                                <div class="row">
+                                    <div class="col-6"><input type="text" class="form-control" placeholder="MM/YY" required></div>
+                                    <div class="col-3"><input type="text" class="form-control" placeholder="CVV" required></div>
+                                    <div class="col-3"><input type="number" class="form-control" placeholder="Montant (TND)" required></div>
+                                </div>
+                                <button type="submit" class="btn btn-success w-100 mt-3">دفع الآن</button>
+                            </form>
+                            <p class="text-muted mt-3">Sécurisé (intégrez Stripe en prod).</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Niveau souhaité</label>
-                    <select class="form-input" required>
-                        <option value="">Choisir un niveau</option>
-                        <option value="1">Niveau 1 - Gratuit</option>
-                        <option value="2">Niveau 2 - 99€/mois</option>
-                        <option value="3">Niveau 3 - 199€/mois</option>
-                    </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Niveaux -->
+    <section id="levels" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5">المستويات</h2>
+            <div class="row">
+                <!-- Arabe -->
+                <div class="col-md-6 mb-5">
+                    <h4>اللغة العربية</h4>
+                    <div class="level-card card mb-3">
+                        <div class="card-body">
+                            <h6>مستوى 1</h6>
+                            <div class="exercise">
+                                <p>اكتب: أنا طالب</p>
+                                <input type="text" class="form-control mt-2" placeholder="اكتب هنا">
+                                <button class="btn btn-sm btn-success mt-2">التحقق</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Niveaux 2 & 3 similaires -->
                 </div>
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
-                    <i class="fas fa-rocket"></i> S'inscrire gratuitement
-                </button>
-            </form>
+                <!-- Quran -->
+                <div class="col-md-6 mb-5">
+                    <h4>القرآن - تجويد</h4>
+                    <div class="level-card card mb-3">
+                        <div class="card-body">
+                            <h6>مستوى 1: الإدغام</h6>
+                            <audio controls class="w-100 mt-2">
+                                <source src="[soundjay.com](https://www.soundjay.com/misc/sounds/bell-ringing-05.wav)" type="audio/wav">
+                            </audio>
+                            <div class="exercise mt-3">
+                                <p>اقرأ: القرآن</p>
+                                <textarea class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section id="testimonials" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">آراء المشاركين</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p>"دروس رائعة لأطفالي!"</p>
+                            <h6>أم محمد</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ajoutez plus -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5">اتصل بنا</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Fatmakhamassi33@gmail.com</h5>
+                    <h5>+216 55 118 608</h5>
+                </div>
+                <div class="col-md-6">
+                    <form>
+                        <div class="mb-3"><input type="text" class="form-control" placeholder="اسمك"></div>
+                        <div class="mb-3"><input type="email" class="form-control" placeholder="بريدك"></div>
+                        <textarea class="form-control" placeholder="رسالتك" rows="4"></textarea>
+                        <button type="submit" class="btn btn-success w-100 mt-3">إرسال</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat/Messagerie simulée -->
+    <div class="fixed-bottom container p-3" style="display:none;" id="chatToggle">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <span>دردشة مع المعلم</span>
+                <button class="btn btn-sm btn-close" onclick="toggleChat()"></button>
+            </div>
+            <div class="chat-box" id="chatBox"></div>
+            <div class="card-footer">
+                <input type="text" class="form-control d-inline w-75" id="chatInput" placeholder="اكتب رسالة...">
+                <button class="btn btn-success ms-2" onclick="sendMessage()">إرسال</button>
+            </div>
         </div>
     </div>
-</section>
 
-<!-- 3. CONNEXION -->
-<section id="connexion" class="section">
-    <div class="container">
-        <div class="form-container">
-            <h2 style="font-size: 2.5rem; color: #1e3c72; margin-bottom: 2rem; text-align: center;">
-                <i class="fas fa-sign-in-alt"></i> Connexion Client
-            </h2>
-            <form id="formConnexion">
-                <div class="form-group">
-                    <label>Identifiant (Email)</label>
-                    <input type="email" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label>Mot de passe</label>
-                    <input type="password" class="form-input" required>
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
-                    <i class="fas fa-door-open"></i> Accéder au tableau de bord
-                </button>
-            </form>
-            <p style="text-align: center; margin-top: 1.5rem; color: #666;">
-                Pas de compte ? <a href="#" onclick="showSection('inscription')" style="color: #ff6b35; font-weight: 600;">S'inscrire</a>
-            </p>
-        </div>
-    </div>
-</section>
+    <script>
+        // EmailJS init (remplacez par vos clés)
+        emailjs.init("YOUR_PUBLIC_KEY");
+
+        // Toggle Login/Register
+        function toggleLogin() {
+            new bootstrap.Modal(document.getElementById('authModal')).show();
+        }
+
+        // Register
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const pass = document.getElementById('regPass').value;
+            const credentials = `اسمك: ${name}\nكلمة السر: ${pass}\nبريدك: ${email}`;
+            
+            // Email simulé (EmailJS réel)
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {message: credentials, to_email: email})
+                .then(() => alert('تم إرسال بيانات الدخول إلى بريدك!'));
+            
+            alert(`مرحباً ${name}! بياناتك: ${pass}`);
+            bootstrap.Modal.getInstance(document.getElementById('authModal')).hide();
+        });
+
+        // Login simple (stockage local sim)
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('تم الدخول! افتح الدردشة.');
+            document.getElementById('registerForm').style.display = 'none';
+            this.style.display = 'block';
+            toggleChat();
+        });
+
+        // Teacher questions
+        function postQuestion() {
+            const q = document.getElementById('teacherQuestion').value;
+            document.getElementById('questionsList').innerHTML += `<div class="alert alert-info">${q}</div>`;
+        }
+
+        // Paiement simulé
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('تم الدفع بنجاح! (Simulé)');
+        });
+
+        // Chat
+        let chatOpen = false;
+        function toggleChat() { document.getElementById('chatToggle').style.display = chatOpen ? 'none' : 'block'; chatOpen = !chatOpen; }
+        function sendMessage() {
+            const msg = document.getElementById('chatInput').value;
+            document.getElementById('chatBox').innerHTML += `<p><strong>أنت:</strong> ${msg}</p>`;
+            document.getElementById('chatBox').innerHTML += `<p><em>المعلم: شكراً لسؤالك!</em></p>`;
+            document.getElementById('chatInput').value = '';
+            document.getElementById('chatBox').scrollTop = document.getElementById('chatBox').scrollHeight;
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
