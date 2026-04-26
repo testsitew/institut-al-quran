@@ -413,93 +413,130 @@
     </header>
 
     <!-- 1. ACCUEIL -->
-    <section id="accueil" class="section active">
-        <div class="container">
-            <div class="hero">
-                <h1>🎓 تعلم القرآن الكريم مع أفضل المعلمين</h1>
-                <p>برامج شاملة لتعليم التجويد وحفظ القرآن من الصفر إلى الاحتراف مع شهادات معتمدة</p>
-                <div class="cta-buttons">
-                    <a href="#" onclick="showSection('niveaux')" class="btn-primary">
-                        <i class="fas fa-play-circle"></i> ابدأ الآن
-                    </a>
-                    <a href="#" onclick="showSection('inscription')" class="btn-primary" style="background: linear-gradient(135deg, #4CAF50, #45a049);">
-                        <i class="fas fa-crown"></i> جلسة مجانية
-                    </a>
-                </div>
-            </div>
-
-            <div class="stats">
-                <div class="stat-item">
-                    <h3>5000+</h3>
-                    <p>طالب مسجل</p>
-                </div>
-                <div class="stat-item">
-                    <h3>150+</h3>
-                    <p>معلم مؤهل</p>
-                </div>
-                <div class="stat-item">
-                    <h3>98%</h3>
-                    <p>معدل الرضا</p>
-                </div>
-                <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p>دعم متواصل</p>
-                </div>
-            </div>
-
-            <div class="niveaux-grid">
-                <div class="niveau-card niveau-gratuit">
-                    <div class="niveau-icon">👑</div>
-                    <h3>المستوى الأساسي</h3>
-                    <p>تجويد أساسي وتلاوة السور القصيرة</p>
-                    <div class="prix">🆓 مجاني</div>
-                    <button class="btn-primary" onclick="showSection('inscription')">التسجيل الآن</button>
-                </div>
-                <div class="niveau-card niveau-payant">
-                    <div class="niveau-icon">⭐</div>
-                    <h3>المستوى المتوسط</h3>
-                    <p>حفظ وتجويد متقدم مع قواعد التجويد</p>
-                    <div class="prix">99€/شهر</div>
-                    <button class="btn-primary" onclick="showSection('inscription')">التسجيل الآن</button>
-                </div>
-                <div class="niveau-card niveau-payant">
-                    <div class="niveau-icon">💎</div>
-                    <h3>المستوى الاحترافي</h3>
-                    <p>حفظ كامل + تفسير + تدريس</p>
-                    <div class="prix">199€/شهر</div>
-                    <button class="btn-primary" onclick="showSection('inscription')">التسجيل الآن</button>
-                </div>
+<section id="accueil" class="section active">
+    <div class="container">
+        <div class="hero">
+            <h1>🎓 Apprenez le Coran avec les meilleurs professeurs</h1>
+            <p>Programmes complets pour l'apprentissage du Tajwid et la mémorisation du Coran du débutant au professionnel avec certificats certifiés</p>
+            <div class="cta-buttons">
+                <a href="#" onclick="showSection('niveaux')" class="btn-primary">
+                    <i class="fas fa-play-circle"></i> Commencer maintenant
+                </a>
+                <a href="#" onclick="showSection('inscription')" class="btn-primary" style="background: linear-gradient(135deg, #4CAF50, #45a049);">
+                    <i class="fas fa-crown"></i> Séance gratuite
+                </a>
             </div>
         </div>
-    </section>
 
-    <!-- 2. INSCRIPTION -->
-    <section id="inscription" class="section">
-        <div class="container">
-            <div class="form-container">
-                <h2 style="font-size: 2.5rem; color: #1e3c72; margin-bottom: 2rem; text-align: center;">
-                    <i class="fas fa-user-plus"></i> التسجيل الجديد
-                </h2>
-                <form id="formInscription">
-                    <div class="form-group">
-                        <label>الاسم الكامل</label>
-                        <input type="text" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label>البريد الإلكتروني</label>
-                        <input type="email" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label>رقم الهاتف</label>
-                        <input type="tel" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label>كلمة المرور</label>
-                        <input type="password" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label>المستوى المطلوب</label>
-                        <select class="form-input" required>
-                            <option value="">اختر المستوى</option>
-                            <option value="1">المستوى 1 - مجاني</option>
-                            <option value="2">المستوى 2 - 
+        <div class="stats">
+            <div class="stat-item">
+                <h3>5000+</h3>
+                <p>Élèves inscrits</p>
+            </div>
+            <div class="stat-item">
+                <h3>150+</h3>
+                <p>Professeurs qualifiés</p>
+            </div>
+            <div class="stat-item">
+                <h3>98%</h3>
+                <p>Taux de satisfaction</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Support continu</p>
+            </div>
+        </div>
+
+        <div class="niveaux-grid">
+            <div class="niveau-card niveau-gratuit">
+                <div class="niveau-icon">👑</div>
+                <h3>Niveau Débutant</h3>
+                <p>Tajwid de base et récitation des sourates courtes</p>
+                <div class="prix">🆓 Gratuit</div>
+                <button class="btn-primary" onclick="showSection('inscription')">S'inscrire maintenant</button>
+            </div>
+            <div class="niveau-card niveau-payant">
+                <div class="niveau-icon">⭐</div>
+                <h3>Niveau Intermédiaire</h3>
+                <p>Mémorisation et Tajwid avancé avec règles du Tajwid</p>
+                <div class="prix">99€/mois</div>
+                <button class="btn-primary" onclick="showSection('inscription')">S'inscrire maintenant</button>
+            </div>
+            <div class="niveau-card niveau-payant">
+                <div class="niveau-icon">💎</div>
+                <h3>Niveau Professionnel</h3>
+                <p>Mémorisation complète + Tafsir + Enseignement</p>
+                <div class="prix">199€/mois</div>
+                <button class="btn-primary" onclick="showSection('inscription')">S'inscrire maintenant</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. INSCRIPTION -->
+<section id="inscription" class="section">
+    <div class="container">
+        <div class="form-container">
+            <h2 style="font-size: 2.5rem; color: #1e3c72; margin-bottom: 2rem; text-align: center;">
+                <i class="fas fa-user-plus"></i> Nouvelle Inscription
+            </h2>
+            <form id="formInscription">
+                <div class="form-group">
+                    <label>Nom et Prénom complet</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Adresse e-mail</label>
+                    <input type="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Numéro de téléphone</label>
+                    <input type="tel" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Niveau souhaité</label>
+                    <select class="form-input" required>
+                        <option value="">Choisir un niveau</option>
+                        <option value="1">Niveau 1 - Gratuit</option>
+                        <option value="2">Niveau 2 - 99€/mois</option>
+                        <option value="3">Niveau 3 - 199€/mois</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
+                    <i class="fas fa-rocket"></i> S'inscrire gratuitement
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- 3. CONNEXION -->
+<section id="connexion" class="section">
+    <div class="container">
+        <div class="form-container">
+            <h2 style="font-size: 2.5rem; color: #1e3c72; margin-bottom: 2rem; text-align: center;">
+                <i class="fas fa-sign-in-alt"></i> Connexion Client
+            </h2>
+            <form id="formConnexion">
+                <div class="form-group">
+                    <label>Identifiant (Email)</label>
+                    <input type="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" class="form-input" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
+                    <i class="fas fa-door-open"></i> Accéder au tableau de bord
+                </button>
+            </form>
+            <p style="text-align: center; margin-top: 1.5rem; color: #666;">
+                Pas de compte ? <a href="#" onclick="showSection('inscription')" style="color: #ff6b35; font-weight: 600;">S'inscrire</a>
+            </p>
+        </div>
+    </div>
+</section>
