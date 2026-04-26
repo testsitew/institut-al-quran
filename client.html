@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte - Institut Al-Quran</title>
+</head>
+<body>
+    <!-- Bouton Accueil Fixe -->
+    <a href="index.html" class="back-home"><i class="fas fa-home"></i></a>
+
+    <section class="section">
+        <h2 class="section-title">لوحة التحكم</h2>
+        
+        <div id="clientInfo" class="feature-card" style="max-width: 600px; margin: 0 auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h3>مرحباً بك</h3>
+                <span id="niveauUser" style="background: #4CAF50; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600;"></span>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                <div><strong>الاسم:</strong> <span id="nomUser">-</span></div>
+                <div><strong>البريد:</strong> <span id="emailUser">-</span></div>
+                <div><strong>الهاتف:</strong> <span id="telUser">-</span></div>
+                <div><strong>تاريخ التسجيل:</strong> <span id="dateUser">-</span></div>
+            </div>
+            
+            <div style="text-align: center;">
+                <h4>دوراتك المتاحة</h4>
+                <div id="coursList" style="margin-top: 1rem;">
+                    <!-- Cours chargés dynamiquement -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const clientId = urlParams.get('id');
+        const clientData = JSON.parse(localStorage.getItem('clientData') || '{}');
+
+        if (clientId && clientData.email === clientId) {
+            // Charger infos client
+            document.getElementById('nomUser').textContent = clientData.nom;
+            document.getElementById('emailUser').textContent = clientData.email;
+            document.getElementById('telUser').textContent = clientData.telephone;
+            document.getElementById('dateUser').textContent = new Date(clientData.date).toLocaleDateString('ar');
+            document.getElementById('niveauUser').textContent = `المستوى ${clientData.niveau}`;
+            
+            // Cours selon niveau
+            const cours = {
+                1: ['تجويد أساسي', 'تلاوة سور قصيرة', 'مخارج الحروف'],
+                2: ['تجويد متقدم', 'حفظ السور المتوسطة', 'قواعد التجويد'],
+                3: ['حفظ كامل', 'تفسير القرآن', 'تجويد احترافي']
+            };
+            
+            const list = document.getElementById('coursList');
+            cours[clientData.niveau].forEach(cours => {
+                list.innerHTML += `<div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-bottom: 0.5rem; border-right: 4px solid #4CAF50;">
+                    📚 ${cours}
+                </div>`;
+            });
+        } else {
+            document.getElementById('clientInfo').innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ff6b35; margin-bottom: 1rem;"></i>
+                    <h3>بيانات غير صحيحة</h3>
+                    <a href="index.html" class="cta-button">العودة للصفحة الرئيسية</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
