@@ -110,3 +110,24 @@
         }
     </style>
 </head>
+/* Copiez TOUT le CSS précédent ici + ajoutez : */
+body.single-page {
+    padding-top: 80px;
+}
+
+.page-hero {
+    min-height: 60vh;
+    background: linear-gradient(135deg, var(--primary-gold), var(--primary-green));
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.breadcrumb-custom {
+    background: #f8f9fa;
+    padding: 1rem 0;
+}
