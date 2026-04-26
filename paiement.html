@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paiement Paysera - Institut Arabe</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family:'Cairo',sans-serif;background:linear-gradient(135deg,#1e3c72 0%,#2a5298 100%);color:#333;line-height:1.6;direction:rtl;}
+.header {background:rgba(255,255,255,.98);backdrop-filter:blur(20px);color:#1e3c72;padding:1rem 0;position:fixed;width:100%;top:0;z-index:100;box-shadow:0 5px 25px rgba(30,60,114,.2);}
+.navbar {max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;padding:0 2rem;align-items:center;}
+.logo {font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,#1e3c72,#2a5298);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:flex;align-items:center;gap:12px;}
+.nav-menu {display:flex;list-style:none;gap:2.5rem;align-items:center;}
+.nav-menu a {color:#1e3c72;text-decoration:none;font-weight:600;font-size:1.1rem;transition:all .3s;}
+.nav-menu a:hover {color:#ff6b6b;transform:translateY(-2px);}
+.breadcrumbs {background:rgba(255,255,255,.95);padding:1.2rem 2rem;margin:110px 0 0 0;font-size:1.15rem;box-shadow:0 5px 20px rgba(0,0,0,.1);backdrop-filter:blur(10px);}
+.breadcrumbs a {color:#1e3c72;text-decoration:none;font-weight:600;}
+.hero-paiement {color:white;padding:160px 0 100px;text-align:center;position:relative;overflow:hidden;}
+.hero-paiement::before {content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(30,60,114,.9),rgba(42,82,152,.9));z-index:1;}
+.hero-paiement > * {position:relative;z-index:2;}
+.hero-paiement h1 {font-size:4rem;margin-bottom:1.5rem;background:linear-gradient(45deg,#ff6b6b,#ffd93d);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;letter-spacing:2px;}
+.prix-euro {font-size:6rem;color:#ffd93d;font-weight:900;margin:1.5rem 0 2rem;animation:pulse 2s infinite;text-shadow:0 0 30px rgba(255,217,61,.8);}
+@keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+.container {max-width:1100px;margin:0 auto;padding:0 25px;}
+.order-card {background:rgba(255,255,255,.15);backdrop-filter:blur(25px);border-radius:30px;padding:4rem;border:2px solid rgba(255,255,255,.2);box-shadow:0 30px 80px rgba(30,60,114,.3);margin:60px 0;}
+.summary-title {text-align:center;font-size:2.8rem;color:white;margin-bottom:3rem;display:flex;align-items:center;justify-content:center;gap:20px;font-weight:800;text-shadow:0 2px 10px rgba(0,0,0,.3);}
+.summary-item {display:flex;justify-content:space-between;align-items:center;padding:2rem 0;border-bottom:2px dashed rgba(255,255,255,.3);font-size:1.4rem;color:white;}
+.summary-item:last-child {border-bottom:none;background:linear-gradient(135deg,#ff6b6b,#ff8e8e);color:white;padding:2.5rem;border-radius:20px;margin-top:2rem;font-size:1.8rem;font-weight:800;box-shadow:0 10px 30px rgba(255,107,107,.4);}
+.paysera-section {background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border-radius:25px;padding:4rem;margin:50px 0;border:2px solid rgba(255,255,255,.2);}
+.paysera-title {text-align:center;font-size:2.5rem;color:#ffd93d;margin-bottom:3rem;font-weight:800;}
+.paysera-info {display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:3rem;margin-bottom:3rem;}
+.info-card {background:white;border-radius:20px;padding:3rem;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.15);transition:all .4s;}
+.info-card:hover {transform:translateY(-15px);}
+.info-icon {font-size:5rem;background:linear-gradient(135deg,#1e3c72,#2a5298);width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;color:white;box-shadow:0 15px 35px rgba(30,60,114,.4);}
+.info-card h3 {font-size:2rem;color:#1e3c72;margin-bottom:1.5rem;font-weight:700;}
+.info-card p {color:#5a6c7d;font-size:1.2rem;line-height:1.8;}
+.pay-button {display:block;background:linear-gradient(135deg,#ff6b6b,#ff5252);color:white;padding:25px 60px;border:none;border-radius:50px;font-size:1.6rem;font-weight:800;cursor:pointer;width:100%;transition:all .5s;font-family:'Cairo',sans-serif;text-transform:uppercase;letter-spacing:2px;box-shadow:0 20px 50px rgba(255,107,107,.4);position:relative;overflow:hidden;}
+.pay-button:hover {transform:translateY(-8px);box-shadow:0 30px 60px rgba(255,107,107,.6);}
+.pay-button::before {content:'🚀';position:absolute;left:20px;top:50%;transform:translateY(-50%);font-size:1.8rem;transition:.3s;}
+.pay-button:hover::before {left:30px;}
+.security-section {background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border-radius:25px;padding:4rem;margin:60px 0;border:2px solid rgba(255,255,255,.2);}
+.security-title {text-align:center;font-size:2.3rem;color:#ffd93d;margin-bottom:2.5rem;font-weight:800;}
+.security-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2.5rem;}
+.security-item {display:flex;align-items:center;gap:20px;padding:2rem;background:white;border-radius:20px;box-shadow:0 15px 35px rgba(0,0,0,.1);transition:all .3s;}
+.security-item:hover {transform:translateY(-10px);}
+.security-icon {width:70px;height:70px;border-radius:15px;background:linear-gradient(135deg,#1e3c72,#2a5298);color:white;font-size:2rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.security-text h4 {color:#1e3c72;font-size:1.4rem;font-weight:700;margin-bottom:0.5rem;}
+.security-text p {color:#5a6c7d;}
+.footer {background:rgba(44,62,80,.95);color:white;text-align:center;padding:4rem;margin-top:6rem;border-top:1px solid rgba(255,255,255,.1);}
+@media (max-width:768px) {.paysera-info {grid-template-columns:1fr;}.prix-euro {font-size:4rem;}.hero-paiement h1 {font-size:2.8rem;}}
+</style>
+</head>
+<body>
+<header class="header">
+<nav class="navbar">
+<div class="logo">
+<i class="fas fa-mosque"></i>
+Institut Arabe
+</div>
+<ul class="nav-menu">
+<li><a href="index.html">🏠 Accueil</a></li>
+<li><a href="inscription.html">📝 Inscription</a></li>
+<li><a href="contact.html">📞 Support</a></li>
+</ul>
+</nav>
+</header>
+
+<nav class="breadcrumbs">
+<div class="container">
+<a href="index.html">Accueil</a> → <a href="inscription.html">Inscription</a> → <span>Paiement Paysera €</span>
+</div>
+</nav>
+
+<section class="hero-paiement">
+<div class="container">
+<h1>💳 Paiement Sécurisé</h1>
+<div class="prix-euro">29€</div>
+<p><strong>🎓 Niveau Complet - Accès 3 mois</strong><br>
+✅ Paysera | ✅ Crypto | ✅ Carte bancaire<br>
+🔒 SSL 256-bit | 🚀 Confirmation instantanée</p>
+</div>
+</section>
+
+<section class="paiement-section">
+<div class="container">
+<div class="order-card">
+<h2 class="summary-title">
+<i class="fas fa-receipt"></i> 
+Votre commande
+</h2>
+<div class="summary-item">
+<span>📚 Cours Niveau 2 + Tajwid + Coran</span>
+<span>87€</span>
+</div>
+<div class="summary-item">
+<span>🎁 Pack 3 mois + Support privé</span>
+<span>29€</span>
+</div>
+<div class="summary-item">
+<span>💎 Offre spéciale lancement</span>
+<span>-87€</span>
+</div>
+<div class="summary-item">
+<span>🚀 TOTAL À PAYER</span>
+<span>29€</span>
+</div>
+</div>
+
+<div class="paysera-section">
+<h2 class="paysera-title">🌐 Paysera - Paiement international</h2>
+<div class="paysera-info">
+<div class="info-card">
+<div class="info-icon">
+<i class="fas fa-credit-card"></i>
+</div>
+<h3>Carte bancaire</h3>
+<p>Visa, Mastercard, Apple Pay<br>SEPA instantané<br><strong>0% commission</strong></p>
+</div>
+<div class="info-card">
+<div class="info-icon">
+<i class="fas fa-university"></i>
+</div>
+<h3>Virement bancaire</h3>
+<p>IBAN européen<br>PayPal accepté<br>Confirmation 5min</p>
+</div>
+<div class="info-card">
+<div class="info-icon">
+<i class="fab fa-bitcoin"></i>
+</div>
+<h3>Cryptomonnaies</h3>
+<p>Bitcoin, Ethereum, USDT<br>Binance Pay<br>Anonyme & rapide</p>
+</div>
+</div>
+<a href="https://www.paysera.com/v2/fr-FR/pay/XXXXX" target="_blank" class="pay-button">
+Payer 29€ Sécurisé
+</a>
+</div>
+
+<div class="security-section">
+<h2 class="security-title">🔒 Sécurité & Garanties</h2>
+<div class="security-grid">
+<div class="security-item">
+<div class="security-icon">
+<i class="fas fa-lock"></i>
+</div>
+<div class="security-text">
+<h4>SSL 256-bit</h4>
+<p>Paiement crypté - Aucun risque</p>
+</div>
+</div>
+<div class="security-item">
+<div class="security-icon">
+<i class="fas fa-shield-alt"></i>
+</div>
+<div class="security-text">
+<h4>Paysera Certifié</h4>
+<p>License bancaire européenne PCI-DSS</p>
+</div>
+</div>
+<div class="security-item">
+<div class="security-icon">
+<i class="fas fa-undo-alt"></i>
+</div>
+<div class="security-text">
+<h4>Garantie 30 jours</h4>
+<p>Remboursement intégral satisfait ou remboursé</p>
+</div>
+<div class="security-item">
+<div class="security-icon">
+<i class="fas fa-headset"></i>
+</div>
+<div class="security-text">
+<h4>Support 24/7</h4>
+<p>WhatsApp/Email - Réponse immédiate</p>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+<p>© 2024 Institut Arabe International | <a href="contact.html" style="color:#ffd93d;">Support 24/7</a> | <a href="#" style="color:#ff6b6b;">Conditions générales</a></p>
+<p style="margin-top:1rem;font-size:0.9rem;color:#bdc3c7;">Paysera License PEKKA0000000-1 | SSL Secured</p>
+</div>
+</footer>
+
+<script>
+// Remplace XXXXX par ton Paysera Payment ID
+const payseraLink = 'https://www.paysera.com/v2/fr-FR/pay/XXXXX';
+document.querySelector('.pay-button').addEventListener('click', function() {
+    // Tracking conversion
+    gtag?.('event', 'purchase', {
+        value: 29,
+        currency: 'EUR',
+        items: [{name: 'Cours Coran Niveau 2'}]
+    });
+});
+</script>
+</body>
+</html>

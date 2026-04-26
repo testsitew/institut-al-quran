@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niveau 1 - Institut Arabe</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+/* Copie TOUT le style de index.html + ça: */
+.hero-niveau {background:#ecf0f1;padding:120px 0 80px;color:#2c3e50;text-align:center;}
+.breadcrumbs {margin-bottom:2rem;font-size:1.1rem;}
+.breadcrumbs a {color:#667eea;text-decoration:none;}
+.cours-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;}
+.cours-card {background:white;padding:3rem 2rem;border-radius:20px;text-align:center;transition:all .4s;box-shadow:0 10px 30px rgba(0,0,0,.1);text-decoration:none;color:inherit;cursor:pointer;}
+.cours-card:hover {transform:translateY(-10px);box-shadow:0 20px 40px rgba(0,0,0,.2);}
+.cours-card i {font-size:4rem;color:#27ae60;margin-bottom:1rem;}
+.cours-card h3 {font-size:1.8rem;margin-bottom:1rem;color:#2c3e50;}
+/* Reste du style identique à index.html */
+</style>
+</head>
+<body>
+<!-- Copie header de index.html -->
+<header class="header"><!-- identique --></header>
+
+<section class="hero-niveau">
+<div class="container">
+<div class="breadcrumbs">
+<a href="index.html">Accueil</a> → <span>Niveau 1 - Débutant</span>
+</div>
+<h1>📚 Niveau 1</h1>
+<p>Les bases du Coran, Tajwid et Arabe</p>
+</div>
+</section>
+
+<section class="cours">
+<div class="container">
+<h2 style="text-align:center;margin:4rem 0 2rem;font-size:2rem;">Choisissez votre cours</h2>
+<div class="cours-grid">
+<a href="quran1.html" class="cours-card">
+<i class="fas fa-book-open"></i>
+<h3>Le Coran</h3>
+<p>Al-Fatiha, Al-Ikhlas...</p>
+</a>
+<a href="tajwid1.html" class="cours-card">
+<i class="fas fa-music"></i>
+<h3>Tajwid</h3>
+<p>Makharij, Sifaat...</p>
+</a>
+<a href="arabic1.html" class="cours-card">
+<i class="fas fa-language"></i>
+<h3>Arabe</h3>
+<p>Alphabet, lecture</p>
+</a>
+</div>
+</div>
+</section>
+
+<!-- Footer identique -->
+</body>
+</html>
