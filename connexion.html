@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - مدرسة القرآن</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-green: #1B5E20;
+        }
+        .page-hero { background: linear-gradient(135deg, var(--primary-green), var(--primary-gold)); color: white; }
+        .card-login { box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-radius: 20px; }
+        .btn-login { background: linear-gradient(45deg, var(--primary-green), var(--primary-gold)); border: none; }
+        .login-divider { position: relative; }
+        .login-divider::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #dee2e6; }
+        .login-divider span { background: white; padding: 0 1rem; color: #6c757d; }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <div id="navbar-container"></div>
+    
+    <!-- HERO CONNEXION -->
+    <section class="page-hero py-5">
+        <div class="container">
+            <nav class="breadcrumb-custom">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white">Accueil</a></li>
+                    <li class="breadcrumb-item active text-white" aria-current="page">Connexion</li>
+                </ol>
+            </nav>
+            <div class="row align-items-center mt-4">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-3 arabic-text">تسجيل الدخول</h1>
+                    <h1 class="display-4 fw-bold mb-4">Se Connecter</h1>
+                    <p class="lead mb-0">Accédez à votre tableau de bord</p>
+                    <div class="mt-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-book-open text-primary me-2"></i>
+                            <strong>Vos cours en attente</strong>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-comments text-success me-2"></i>
+                            <strong>Nouveaux messages professeurs</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&h=400&fit=crop" 
+                         alt="Tableau de bord" class="img-fluid rounded-4 shadow-lg" style="max-height: 400px;">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FORMULAIRE CONNEXION -->
+    <main class="container my-5 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-xl-5">
+                <div class="card card-login overflow-hidden">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-5">
+                            <i class="fas fa-sign-in-alt fa-4x text-primary mb-4"></i>
+                            <h3 class="arabic-text mb-2">الدخول إلى الحساب</h3>
+                            <h4>Connexion Sécurisée</h4>
+                        </div>
+                        
+                        <!-- FORMULAIRE -->
+                        <form id="loginForm">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold fs-5 mb-2">📧 Email</label>
+                                <input type="email" class="form-control form-control-lg rounded-4" 
+                                       id="loginEmail" placeholder="votre@email.com" required>
+                            </div>
+                            
+                            <div class="mb-5">
+                                <label class="form-label fw-bold fs-5 mb-2">🔒 Mot de passe</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control form-control-lg rounded-4 rounded-end-0" 
+                                           id="loginPassword" placeholder="Votre mot de passe" required>
+                                    <button class="btn btn-outline-secondary rounded-start-0" type="button" onclick="togglePassword()">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-login btn-lg w-100 py-3 rounded-4 shadow-lg fs-5 fw-bold mb-3">
+                                <i class="fas fa-arrow-right me-2"></i>
+                                ACCÉDER AU DASHBOARD
+                            </button>
+                        </form>
+                        
+                        <!-- Oublié / Inscription -->
+                        <div class="text-center">
+                            <a href="#" class="text-muted text-decoration-none mb-3 d-block">
+                                <i class="fas fa-question-circle me-1"></i>Mot de passe oublié ?
+                            </a>
+                            <div class="login-divider">
+                                <span>ou</span>
+                            </div>
+                            <p class="mt-4 mb-0">
+                                Nouveau ? 
+                                <a href="inscription.html" class="text-primary fw-bold text-decoration-none fs-5">
+                                    Créer un compte gratuit →
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Démo credentials -->
+                    <div class="bg-light p-4 border-top">
+                        <h6 class="mb-2"><i class="fas fa-info-circle text-info me-2"></i>💡 Test rapide</h6>
+                        <small class="text-muted">
+                            Email: <strong>test@test.com</strong><br>
+                            Mot de passe: <strong>Quran1234!</strong>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JS CONNEXION -->
+    <script>
+        // Charger navbar
+        fetch('nav.html')
+            .then(r => r.text())
+            .then(html => document.getElementById('navbar-container').innerHTML = html);
+
+        // Toggle password
+        function togglePassword() {
+            const pwd = document.getElementById('loginPassword');
+            const icon = event.target.querySelector('i');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                pwd.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
+        function showAlert(message, type = 'info') {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} position-fixed top-0 end-0 m-4 shadow-lg z-3 rounded-4 fs-6`;
+            alert.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'} me-2"></i>${message}`;
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 5000);
+        }
+
+        // Submit connexion
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const savedUser = JSON.parse(localStorage.getItem('currentUser'));
+
+            const btn = document.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Connexion...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                if (savedUser && savedUser.email === email) {
+                    showAlert(`✅ Bienvenue ${savedUser.name}!`, 'success');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    
+                    // Redirection dashboard
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                } else {
+                    showAlert('❌ Email ou mot de passe incorrect', 'danger');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    
+                    // Animation erreur
+                    document.getElementById('loginForm').style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        document.getElementById('loginForm').style.animation = '';
+                    }, 500);
+                }
+            }, 1500);
+        });
+
+        // Animation shake
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
