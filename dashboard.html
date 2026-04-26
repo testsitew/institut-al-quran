@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - مدرسة القرآن</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-green: #1B5E20;
+        }
+        body.dashboard-open { overflow: hidden; }
+        .dashboard { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; color: white; 
+        }
+        .sidebar { 
+            background: linear-gradient(180deg, var(--primary-green), #2E7D32);
+            height: 100vh; position: fixed; width: 280px; 
+            left: 0; top: 0; z-index: 1000; padding-top: 90px;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+        }
+        .main-content { margin-left: 280px; padding-top: 90px; }
+        .nav-link-dashboard { 
+            color: rgba(255,255,255,0.85); padding: 15px 25px; 
+            border-radius: 15px; margin: 8px 20px; transition: all 0.3s; 
+        }
+        .nav-link-dashboard:hover, .nav-link-dashboard.active { 
+            background: rgba(255,255,255,0.2); color: white; 
+            transform: translateX(10px); 
+        }
+        .mobile-menu-toggle {
+            position: fixed; top: 20px; left: 20px; z-index: 1001;
+            background: var(--primary-gold); border: none; border-radius: 10px;
+            width: 50px; height: 50px; color: white; font-size: 1.2rem;
+        }
+        .stats-card { 
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 20px;
+        }
+        .exercise-area {
+            min-height: 300px; border: 3px dashed rgba(255,255,255,0.3);
+            border-radius: 20px; display: flex; align-items: center;
+            justify-content: center; font-size: 3rem; font-weight: 700;
+            background: rgba(255,255,255,0.1);
+        }
+        @media (max-width: 992px) {
+            .sidebar { transform: translateX(-100%); transition: 0.3s; }
+            .sidebar.show { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+        }
+    </style>
+</head>
+<body class="dashboard">
+    <!-- MOBILE TOGGLE -->
+    <button class="mobile-menu-toggle d-lg-none" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+        <div class="p-4">
+            <div class="d-flex align-items-center mb-5 pb-4 border-bottom">
+                <div class="bg-white bg-opacity-20 rounded-circle p-3 me-3">
+                    <i class="fas fa-user fa-2x"></i>
+                </div>
+                <div>
+                    <h5 id="userName" class="mb-0">Étudiant</h5>
+                    <small class="opacity-75">Membre Premium</small>
+                </div>
+            </div>
+            
+            <ul class="list-unstyled">
+                <li><a href="#" class="nav-link-dashboard active" onclick="showSection('home')">
+                    <i class="fas fa-home me-3"></i>Accueil
+                </a></li>
+                <li><a href="#" class="nav-link-dashboard" onclick="showSection('courses')">
+                    <i class="fas fa-book-open me-3"></i>Mes Cours
+                </a></li>
+                <li><a href="#" class="nav-link-dashboard" onclick="showSection('messages')">
+                    <i class="fas fa-comments me-3"></i>Messagerie <span class="badge bg-danger ms-1">3</span>
+                </a></li>
+                <li><a href="#" class="nav-link-dashboard" onclick="showSection('profile')">
+                    <i class="fas fa-user-circle me-3"></i>Profil
+                </a></li>
+                <li><a href="index.html" class="nav-link-dashboard">
+                    <i class="fas fa-sign-out-alt me-3"></i>Déconnexion
+                </a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div id="mainContent" class="main-content">
+        <!-- Chargé dynamiquement -->
+    </div>
+
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- DASHBOARD JS COMPLET -->
+    <script>
+        // Charger utilisateur
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (!user) window.location.href = 'connexion.html';
+        document.getElementById('userName').textContent = user.name;
+
+        // Toggle sidebar mobile
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('show');
+        }
+
+        // Sections dashboard
+        function showSection(section) {
+            const mainContent = document.getElementById('mainContent');
+            const navLinks = document.querySelectorAll('.nav-link-dashboard');
+            
+            // Update nav active
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Load section
+            const sections = {
+                home: loadHome,
+                courses: loadCourses,
+                messages: loadMessages,
+                profile: loadProfile
+            };
+            sections[section]();
+        }
+
+        // 1. ACCUEIL DASHBOARD
+        function loadHome() {
+            document.getElementById('mainContent').innerHTML = `
+            <div class="container-fluid py-5 px-5">
+                <h1 class="display-5 fw-bold mb-5">
+                    <i class="fas fa-tachometer-alt text-warning me-3"></i>
+                    Bienvenue ${user.name}!
+                </h1>
+                
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-card p-4 text-center h-100">
+                            <i class="fas fa-book fa-3x text-primary mb-3"></i>
+                            <h3 class="fw-bold">8</h3>
+                            <p class="mb-0">Cours actifs</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-card p-4 text-center h-100">
+                            <i class="fas fa-comments fa-3x text-success mb-3"></i>
+                            <h3 class="fw-bold">3</h3>
+                            <p class="mb-0">Nouveaux messages</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-card p-4 text-center h-100">
+                            <i class="fas fa-chart-line fa-3x text-warning mb-3"></i>
+                            <h3 class="fw-bold">67%</h3>
+                            <p class="mb-0">Progression</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-card p-4 text-center h-100">
+                            <i class="fas fa-crown fa-3x text-gold mb-3"></i>
+                            <h3 class="fw-bold">Premium</h3>
+                            <p class="mb-0">Statut actif</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card stats-card p-4">
+                            <h4>📚 Cours du jour</h4>
+                            <div class="row g-3 mt-3">
+                                <div class="col-md-6">
+                                    <div class="bg-white bg-opacity-20 p-3 rounded-3">
+                                        <div class="arabic-text fs-4 mb-2">الفاتحة</div>
+                                        <small>Sourate Al-Fatiha - Tajwid</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="bg-white bg-opacity-20 p-3 rounded-3">
+                                        <div class="arabic-text fs-4 mb-2">بَاءْ تَاءْ</div>
+                                        <small>Écriture arabe niveau 1</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card stats-card p-4 h-100">
+                            <h5>📊 Progression</h5>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <small>Arabe</small><small>${user.progress?.arabe || 35}%</small>
+                                </div>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar bg-primary" style="width: ${user.progress?.arabe || 35}%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between mb-1">
+                                    <small>Tajwid</small><small>${user.progress?.tajwid || 22}%</small>
+                                </div>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar bg-success" style="width
