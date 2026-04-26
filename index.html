@@ -3,202 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institut Arabe International - Cours Coran Tajwid €</title>
-    <meta name="description" content="Cours Coran, Tajwid, Arabe en EURO. Niveaux débutant à avancé. Paiement Paysera sécurisé. Accès immédiat!">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <title>Institut Al-Quran - Apprentissage du Coran</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            direction: rtl;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30,60,114,0.9), rgba(42,82,152,0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e3f2fd" width="1200" height="600"/><path fill="%231e3c72" opacity="0.1" d="M0 300Q300 0 600 300T1200 300V600H0z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 5px 15px rgba(255,107,53,0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,107,53,0.6);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: #1e3c72;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: right 0.3s;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header Pro -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="logo">
-                <i class="fas fa-mosque"></i>
-                <span>Institut Arabe</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#hero">Accueil</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">🎓 Niveaux <i class="fas fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="niveau1.html">Niveau 1 - Gratuit</a></li>
-                        <li><a href="niveau2.html">Niveau 2 - 29€</a></li>
-                        <li><a href="niveau3.html">Niveau 3 - 49€</a></li>
-                    </ul>
-                </li>
-                <li><a href="inscription.html">✍️ Inscription</a></li>
-                <li><a href="paiement.html">💳 29€ Paysera</a></li>
-                <li><a href="contact.html">📞 Contact</a></li>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">📖 Institut Al-Quran</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#accueil">الرئيسية</a></li>
+                <li><a href="#cours">الدورات</a></li>
+                <li><a href="#apropos">عن المعهد</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
             </ul>
-            <div class="header-buttons">
-                <a href="inscription.html" class="btn btn-sm btn-primary">S'inscrire</a>
-            </div>
-            <div class="hamburger">
-                <span></span><span></span><span></span>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero">
+    <section class="hero" id="accueil">
         <div class="hero-content">
-            <h1>Apprenez le Coran en <span class="gradient-text">3 mois</span></h1>
-            <p class="hero-subtitle">Cours certifiés Tajwid + Arabe • 200+ élèves • Paiement Paysera € sécurisé</p>
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">500+</div>
-                    <div>Élèves formés</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">98%</div>
-                    <div>Satisfaction</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">24h</div>
-                    <div>Accès immédiat</div>
-                </div>
-            </div>
-            <div class="hero-buttons">
-                <a href="inscription.html" class="btn btn-primary btn-lg">
-                    🎯 Commencer Gratuitement
-                </a>
-                <a href="paiement.html" class="btn btn-secondary btn-lg">
-                    💳 Payer 29€ Maintenant
-                </a>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coran">
+            <h1>تعلم القرآن الكريم بأفضل الطرق</h1>
+            <p>دورات تفاعلية مع شيوخ مؤهلين • تلاوة • تجويد • حفظ • تفسير</p>
+            <a href="#cours" class="cta-button">ابدأ الآن</a>
         </div>
     </section>
 
-    <!-- Niveaux -->
-    <section id="niveaux" class="niveaux section">
-        <div class="container">
-            <h2 class="section-title">Choisissez votre niveau</h2>
-            <div class="niveaux-grid">
-                <a href="niveau1.html" class="niveau-card niveau-free">
-                    <div class="niveau-badge">GRATUIT</div>
-                    <div class="niveau-icon">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <h3>Niveau 1</h3>
-                    <p class="niveau-price">0€</p>
-                    <ul class="niveau-features">
-                        <li>✅ Alphabet + Fatiha</li>
-                        <li>✅ 10 leçons vidéo</li>
-                        <li>✅ Accès 1 mois</li>
-                    </ul>
-                    <div class="niveau-cta">
-                        <span class="niveau-price-big">GRATUIT</span>
-                        <a href="niveau1.html" class="btn btn-primary">Commencer</a>
-                    </div>
-                </a>
-                <a href="paiement.html" class="niveau-card niveau-popular">
-                    <div class="niveau-badge popular">POPULAIRE</div>
-                    <div class="niveau-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3>Niveau 2</h3>
-                    <p class="niveau-price">29€ <span class="old-price">87€</span></p>
-                    <ul class="niveau-features">
-                        <li>✅ Tajwid complet</li>
-                        <li>✅ 50+ sourates</li>
-                        <li>✅ Support WhatsApp</li>
-                        <li>✅ Certificat</li>
-                    </ul>
-                    <div class="niveau-cta">
-                        <span class="niveau-price-big">29€</span>
-                        <a href="paiement.html" class="btn btn-primary">Payer Paysera</a>
-                    </div>
-                </a>
-                <a href="niveau3.html" class="niveau-card">
-                    <div class="niveau-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Niveau 3</h3>
-                    <p class="niveau-price">49€ <span class="old-price">149€</span></p>
-                    <ul class="niveau-features">
-                        <li>✅ Ijaza certifiée</li>
-                        <li>✅ Cours privés</li>
-                        <li>✅ 100+ sourates</li>
-                        <li>✅ Coaching 1:1</li>
-                    </ul>
-                    <div class="niveau-cta">
-                        <span class="niveau-price-big">49€</span>
-                        <a href="paiement.html" class="btn btn-primary">Acheter</a>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Témoignages -->
-    <section class="testimonials section">
-        <div class="container">
-            <h2 class="section-title">Ce que disent nos élèves</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial">
-                    <div class="testimonial-avatar">
-                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" alt="Amina">
-                    </div>
-                    <p>"J'ai récité ma première sourate complète en 2 mois! Le paiement Paysera était instantané."</p>
-                    <div class="testimonial-author">
-                        <strong>Amina T.</strong> - Niveau 2
-                    </div>
+    <!-- Features Section -->
+    <section class="section" id="cours">
+        <h2 class="section-title">دوراتنا</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-book-open"></i>
                 </div>
-                <div class="testimonial">
-                    <div class="testimonial-avatar">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Karim">
-                    </div>
-                    <p>"Support WhatsApp 24/7. Cours très clairs. 29€ pour 3 mois = INCROYABLE valeur!"</p>
-                    <div class="testimonial-author">
-                        <strong>Karim B.</strong> - Niveau 3
-                    </div>
-                </div>
+                <h3>تعليم التجويد</h3>
+                <p>تعلم قواعد التجويد الصحيحة من أول خطوة مع شيوخ متميزين</p>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA Final -->
-    <section class="cta-final">
-        <div class="container">
-            <h2>🚀 Prêt à commencer ?</h2>
-            <p>Accès immédiat après paiement Paysera</p>
-            <div class="cta-buttons">
-                <a href="inscription.html" class="btn btn-primary btn-xl">S'inscrire Gratuit</a>
-                <a href="paiement.html" class="btn btn-secondary btn-xl">💳 Payer 29€</a>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-memory"></i>
+                </div>
+                <h3>الحفظ السريع</h3>
+                <p>طرق علمية للحفظ السريع والمتين للقرآن الكريم</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>تدريس فردي</h3>
+                <p>دروس خاصة مخصصة حسب مستواك واحتياجاتك</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <i class="fas fa-mosque"></i>
-                        <span>Institut Arabe</span>
-                    </div>
-                    <p>Cours Coran certifiés • Paiement Paysera sécurisé</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Liens rapides</h4>
-                    <ul>
-                        <li><a href="niveau1.html">Niveau 1 Gratuit</a></li>
-                        <li><a href="paiement.html">💳 Paiement 29€</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Institut Arabe International. Tous droits réservés. | <a href="#">Mentions légales</a></p>
-            </div>
-        </div>
+    <footer>
+        <p>&copy; 2024 Institut Al-Quran. جميع الحقوق محفوظة.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Menu Mobile
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30, 60, 114, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
