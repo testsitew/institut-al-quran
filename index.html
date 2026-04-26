@@ -1,432 +1,147 @@
-
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدرسة القرآن - École du Coran en Ligne</title>
-    
-    <!-- Bootstrap CSS -->
+    <title>مدرسة القرآن - École Coran en Ligne</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts - Arabic + French -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="style.css" rel="stylesheet">
     <style>
         :root {
             --primary-gold: #D4AF37;
             --primary-green: #1B5E20;
             --secondary-gold: #F4E4BC;
-            --dark: #0F1419;
-            --light: #F8F9FA;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .hero { 
+            background: linear-gradient(rgba(27,94,32,0.95), rgba(212,175,55,0.85)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f8f9fa" width="1200" height="600"/><path fill="%23d4af37" opacity="0.2" d="M0 200 Q300 100 600 200 T1200 200 V600 H0 Z"/></svg>');
+            background-size: cover; min-height: 100vh; 
         }
-
-        body {
-            font-family: 'Cairo', 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            overflow-x: hidden;
+        .btn-hero { 
+            background: linear-gradient(45deg, var(--primary-gold), #FAD02C); 
+            border-radius: 50px; padding: 15px 35px; font-weight: 600; 
+            box-shadow: 0 8px 25px rgba(212,175,55,0.4);
         }
-
-        .arabic-text {
-            font-family: 'Cairo', serif;
-            direction: rtl;
-            text-align: right;
-        }
-
-        .navbar {
-            background: linear-gradient(135deg, var(--primary-gold), var(--primary-green));
-            box-shadow: 0 2px 20px rgba(27, 94, 32, 0.3);
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: white !important;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(27,94,32,0.9), rgba(212,175,55,0.8)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f8f9fa" width="1200" height="600"/><path fill="%23d4af37" opacity="0.1" d="M0 200 Q300 100 600 200 T1200 200 V600 H0 Z"/></svg>');
-            background-size: cover;
-            background-position: center;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .btn-primary-custom {
-            background: linear-gradient(45deg, var(--primary-gold), #FAD02C);
-            border: none;
-            padding: 12px 30px;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212,175,55,0.4);
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212,175,55,0.6);
-            color: white;
-        }
-
-        .section-padding {
-            padding: 80px 0;
-        }
-
-        .card-custom {
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .card-custom:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .teacher-card img {
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .level-card {
-            height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-gold));
-            color: white;
-        }
-
-        .dashboard {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: white;
-        }
-
-        .chat-container {
-            height: 400px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .chat-messages {
-            height: 300px;
-            overflow-y: auto;
-            padding: 20px;
-            background: #f8f9fa;
-        }
-
-        .message {
-            margin-bottom: 15px;
-            padding: 10px 15px;
-            border-radius: 20px;
-            max-width: 70%;
-        }
-
-        .message.sent {
-            background: var(--primary-gold);
-            color: white;
-            margin-left: auto;
-        }
-
-        .message.received {
-            background: white;
-            color: var(--dark);
-        }
-
-        .exercise-area {
-            min-height: 300px;
-            border: 2px dashed #ddd;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            margin: 20px 0;
-            background: #f8f9fa;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-        }
+        .btn-hero:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(212,175,55,0.6); }
+        .section-padding { padding: 100px 0; }
     </style>
 </head>
 <body>
+    <!-- NAVIGATION -->
+    <div id="navbar-container"></div>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#home">
-            <i class="fas fa-mosque me-2"></i>
-            مدرسة القرآن
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#home">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="#levels">Niveaux</a></li>
-                <li class="nav-item"><a class="nav-link" href="#payments">Paiements</a></li>
-                <li class="nav-item"><a class="nav-link" href="#testimonials">Témoignages</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link btn btn-light btn-sm ms-2" href="#login" data-bs-toggle="modal">Connexion</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Hero Section -->
-<section id="home" class="hero">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="arabic-text mb-4">تعلم القرآن واللغة العربية</h1>
-                <h1 class="mb-5">Apprenez le Coran et l'Arabe en ligne</h1>
-                <p class="lead mb-4">Cours interactifs pour enfants et adultes • Enseignants certifiés • Méthode éprouvée</p>
-                <div>
-                    <button class="btn btn-primary-custom btn-lg me-3 mb-3" onclick="showRegisterModal()">
-                        <i class="fas fa-user-plus me-2"></i>Inscription Gratuite
-                    </button>
-                    <button class="btn btn-outline-light btn-lg mb-3" onclick="showLoginModal()">
-                        <i class="fas fa-sign-in-alt me-2"></i>Se connecter
-                    </button>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center">
-                <img src="https://images.unsplash.com/photo-1576168229636-77a8e0e95c80?w=500&h=400&fit=crop" 
-                     alt="Enfant apprenant le Coran" class="img-fluid rounded-4 shadow-lg" style="max-height: 500px;">
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-<!-- Levels Section -->
-<section id="levels" class="section-padding" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-    <div class="container">
-        <div class="text-center mb-5 text-white">
-            <h2 class="arabic-text mb-3">مستويات التعلم</h2>
-            <h2>Nos Niveaux de Formation</h2>
-        </div>
-        <div class="row g-4">
-            <div class="col-lg-6">
-                <div class="card level-card card-custom text-white">
-                    <i class="fas fa-book-open fa-4x mb-4"></i>
-                    <h3>اللغة العربية - المستوى الأول</h3>
-                    <h4>Langue Arabe - Niveau 1</h4>
-                    <p>Alphabet • Lecture • Écriture • Conversation basique</p>
-                    <button class="btn btn-light mt-3" onclick="startLevel('arabe1')">Commencer <i class="fas fa-arrow-right ms-2"></i></button>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card level-card card-custom text-white">
-                    <i class="fas fa-mosque fa-4x mb-4"></i>
-                    <h3>تجويد القرآن</h3>
-                    <h4>Tajwid du Coran</h4>
-                    <p>Règles de Tajwid • Makharij • Sifaat des lettres</p>
-                    <button class="btn btn-light mt-3" onclick="startLevel('tajwid')">Commencer <i class="fas fa-arrow-right ms-2"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Payments Section -->
-<section id="payments" class="section-padding bg-light">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h2 class="arabic-text mb-3">الدفع الآمن</h2>
-                <h2>Paiements Sécurisés</h2>
-                <div class="row g-4 mt-4">
-                    <div class="col-md-6">
-                        <div class="text-center p-4 border rounded-3">
-                            <i class="fas fa-credit-card fa-3x text-primary mb-3"></i>
-                            <h5>Carte Bancaire</h5>
-                            <p>Visa • Mastercard • CB</p>
-                        </div>
+    <!-- HERO PRINCIPAL -->
+    <section class="hero d-flex align-items-center text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold mb-4 arabic-text">تعلم القرآن الكريم</h1>
+                    <h1 class="display-3 fw-bold mb-5">École Coran en Ligne</h1>
+                    <p class="lead fs-4 mb-5">Cours interactifs pour enfants • Enseignants certifiés Ijaza • 24/7 disponible</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="inscription.html" class="btn btn-hero btn-lg fs-5 px-5 py-3">
+                            <i class="fas fa-user-plus me-2"></i>Inscription Gratuite
+                        </a>
+                        <a href="connexion.html" class="btn btn-outline-light btn-lg fs-5 px-5 py-3">
+                            <i class="fas fa-sign-in-alt me-2"></i>Se Connecter
+                        </a>
                     </div>
-                    <div class="col-md-6">
-                        <div class="text-center p-4 border rounded-3">
-                            <i class="fab fa-paypal fa-3x text-warning mb-3"></i>
-                            <h5>PayPal</h5>
-                            <p>Paiement instantané</p>
+                    <div class="mt-5">
+                        <small class="opacity-75">+5 000 étudiants • 98% satisfaction • Certificat Ijaza</small>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://images.unsplash.com/photo-1576168215506-fba07a93781e?w=600&h=500&fit=crop" 
+                         alt="Enfant Coran" class="img-fluid rounded-5 shadow-lg" style="max-height: 550px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENSEIGNANTS -->
+    <section id="teachers" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="arabic-text display-5 fw-bold mb-4">معلمينا الممتازين</h2>
+                <h2 class="display-5 fw-bold mb-3">Nos Enseignants Certifiés</h2>
+                <p class="lead col-lg-8 mx-auto">Ijaza authentique • 15+ ans expérience • Méthode enfants</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden hover-lift">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=280&fit=crop" class="card-img-top" alt="Cheikh Ahmed">
+                        <div class="card-body p-4">
+                            <h5 class="arabic-text mb-1">الشيخ أحمد</h5>
+                            <h6 class="text-primary mb-2">Cheikh Ahmed Al-Maghribi</h6>
+                            <p class="text-muted mb-3">Tajwid • Hifz • 18 ans expérience</p>
+                            <div class="d-flex justify-content-center mb-3">
+                                <i class="fas fa-star text-warning fs-5"></i>
+                                <i class="fas fa-star text-warning fs-5"></i>
+                                <i class="fas fa-star text-warning fs-5"></i>
+                                <i class="fas fa-star text-warning fs-5"></i>
+                                <i class="fas fa-star text-warning fs-5"></i>
+                            </div>
+                            <a href="enseignants.html" class="btn btn-outline-primary w-100">Voir profil</a>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary-custom btn-lg mt-4 w-100" data-bs-toggle="modal" data-bs-target="#paymentModal">
-                    <i class="fas fa-shopping-cart me-2"></i>Acheter un cours (29€/mois)
-                </button>
-            </div>
-            <div class="col-lg-6 text-center">
-                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=500&h=400&fit=crop" 
-                     alt="Paiement sécurisé" class="img-fluid rounded-4 shadow-lg">
+                <!-- 2 autres enseignants identiques... -->
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Testimonials Section -->
-<section id="testimonials" class="section-padding" style="background: linear-gradient(135deg, var(--primary-green), var(--primary-gold));">
-    <div class="container">
-        <div class="text-center mb-5 text-white">
-            <h2 class="arabic-text mb-3">آراء الطلاب</h2>
-            <h2>Témoignages</h2>
-        </div>
-        <div class="row g-4">
-            <div class="col-lg-4">
-                <div class="card card-custom text-white bg-transparent border-light">
-                    <div class="card-body text-center p-4">
-                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&border-radius=50%" 
-                             class="rounded-circle mb-3 mx-auto" alt="Amina">
-                        <p class="italic">"Excellente pédagogie! Mon fils de 7 ans lit déjà le Coran avec Tajwid."</p>
-                        <h6 class="mb-0">أمينة - أم لـ3 طلاب</h6>
-                        <div class="stars mt-2">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                    </div>
+    <!-- CTA NIVEAUX -->
+    <section class="section-padding bg-gradient-primary text-white">
+        <div class="container text-center">
+            <h2 class="arabic-text display-4 fw-bold mb-4">ابدأ رحلتك الآن</h2>
+            <h2 class="display-4 fw-bold mb-4">Commencez Aujourd'hui</h2>
+            <p class="lead fs-4 mb-5 col-lg-6 mx-auto">Premier cours gratuit • Pas d'engagement</p>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <a href="niveaux.html" class="btn btn-light btn-lg rounded-pill px-5 py-3 fs-5">
+                        <i class="fas fa-book me-2"></i>Découvrir les Niveaux
+                    </a>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card card-custom text-white bg-transparent border-light">
-                    <div class="card-body text-center p-4">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&border-radius=50%" 
-                             class="rounded-circle mb-3 mx-auto" alt="Youssef">
-                        
-                        <p class="italic">"Les cours d'arabe sont très clairs et progressifs. Je recommande!"</p>
-                        <h6 class="mb-0">يوسف - 25 ans</h6>
-                        <div class="stars mt-2">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card card-custom text-white bg-transparent border-light">
-                    <div class="card-body text-center p-4">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=80&h=80&fit=crop&border-radius=50%" 
-                             class="rounded-circle mb-3 mx-auto" alt="Leila">
-                        <p class="italic">"Ma fille adore ses cours! Les exercices interactifs sont géniaux."</p>
-                        <h6 class="mb-0">ليلى - أم لطالبة</h6>
-                        <div class="stars mt-2">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
+                <div class="col-lg-4 col-md-6">
+                    <a href="inscription.html" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fs-5">
+                        <i class="fas fa-user-plus me-2"></i>S'inscrire Gratuitement
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Contact Section (complète) -->
-<section id="contact" class="section-padding bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <h2 class="arabic-text mb-3">اتصل بنا</h2>
-                <h2>Contactez-nous</h2>
-                <p class="lead mb-5">Prêt à commencer votre apprentissage ?</p>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="text-center p-4 h-100 border rounded-4 shadow-sm hover-shadow">
-                            <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
-                            <h5>contact@ecolecoran.fr</h5>
-                            <a href="mailto:contact@ecolecoran.fr" class="btn btn-outline-primary w-100">Envoyer Email</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="text-center p-4 h-100 border rounded-4 shadow-sm hover-shadow">
-                            <i class="fas fa-phone fa-3x text-success mb-3"></i>
-                            <h5>+33 7 12 34 56 78</h5>
-                            <a href="tel:+33712345678" class="btn btn-outline-success w-100">Appeler</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="text-center p-4 h-100 border rounded-4 shadow-sm hover-shadow">
-                            <i class="fab fa-whatsapp fa-3x text-success mb-3"></i>
-                            <h5>WhatsApp</h5>
-                            <a href="https://wa.me/33712345678" class="btn btn-success w-100">WhatsApp</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- BOOTSTRAP + SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Charger navbar
+        fetch('nav.html')
+            .then(r => r.text())
+            .then(html => document.getElementById('navbar-container').innerHTML = html);
 
-<!-- Modals (Login/Register/Payment) - déjà inclus -->
-<!-- Dashboard - déjà inclus -->
+        // Effet hover lift
+        document.querySelectorAll('.hover-lift').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px)';
+                card.style.transition = 'all 0.3s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
 
-<!-- Footer -->
-<footer class="bg-dark text-white py-5 mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <h5 class="arabic-text mb-3">مدرسة القرآن</h5>
-                <p>École en ligne spécialisée dans l'enseignement du Coran et de la langue arabe pour enfants et adultes.</p>
-                <div class="social-links">
-                    <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
-                    <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-lg"></i></a>
-                    <a href="#" class="text-white"><i class="fab fa-whatsapp fa-lg"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-                <h6>Cours</h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-white-50">Tajwid</a></li>
-                    <li><a href="#" class="text-white-50">Langue Arabe</a></li>
-                    <li><a href="#" class="text-white-50">Hifz Coran</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-2 col-md-6 mb-4">
-                <h6>Support</h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-white-50">Aide</a></li>
-                    <li><a href="#" class="text-white-50">Contact</a></li>
-                    <li><a href="#" class="text-white-50">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <h6>Newsletter</h6>
-                <p>Recevez nos nouvelles leçons gratuites</p>
-                <div class="input-group">
-                    <input type="email" class="form-control" placeholder="Votre email">
-                    <button class="btn btn-primary-custom">S\'inscrire</button>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="text-center">
-            <p>&copy; 2024 مدرسة القرآن. Tous droits réservés. | CGV | Mentions Légales</p>
-        </div>
-    </div>
-</footer>
-
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(212,175,55,0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, var(--primary-gold), var(--primary-green))';
+            }
+        });
+    </script>
 </body>
+</html>
