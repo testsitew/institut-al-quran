@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" dir="rtl">
 <head>
@@ -7,9 +8,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* [Mêmes styles que précédemment + bouton accueil fixe] */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cairo', sans-serif; line-height: 1.6; color: #333; direction: rtl; }
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            direction: rtl; 
+            background: #f8f9fa; 
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo { font-size: 1.8rem; font-weight: 700; }
 
         /* Bouton Accueil Fixe */
         .back-home {
@@ -28,60 +57,356 @@
             box-shadow: 0 5px 20px rgba(255,107,53,0.4);
             z-index: 9999;
             text-decoration: none;
-            transition: all 0.3s;
             animation: pulse 2s infinite;
         }
 
-        .back-home:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(255,107,53,0.6);
-        }
+        .back-home:hover { transform: scale(1.1); }
 
         @keyframes pulse {
-            0% { box-shadow: 0 5px 20px rgba(255,107,53,0.4); }
+            0%, 100% { box-shadow: 0 5px 20px rgba(255,107,53,0.4); }
             50% { box-shadow: 0 5px 20px rgba(255,107,53,0.7); }
-            100% { box-shadow: 0 5px 20px rgba(255,107,53,0.4); }
         }
 
-        /* Reste des styles identiques au précédent */
-        /* ... */
+        /* Sections */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+
+        .card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .niveaux-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .niveau-btn {
+            padding: 2rem 1rem;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .niveau-gratuit { background: linear-gradient(135deg, #4CAF50, #45a049); }
+        .niveau-payant { background: linear-gradient(135deg, #ff6b35, #f7931e); }
+
+        .niveau-btn:hover { transform: translateY(-10px); }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover { transform: translateY(-3px); }
+
+        .message {
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .success { background: #d4edda; color: #155724; border: 2px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 2px solid #f5c6cb; }
+
+        .client-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .client-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .cours-list {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+        }
+
+        .cours-item {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 10px;
+            border-right: 4px solid #4CAF50;
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 120px 1rem 2rem; }
+            .card { padding: 2rem 1.5rem; }
+            .niveaux-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <!-- Bouton Accueil Fixe -->
-    <a href="index.html" class="back-home" title="Accueil">
-        <i class="fas fa-home"></i>
-    </a>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">📖 Institut Al-Quran</div>
+            <div class="back-home" onclick="showSection('accueil')">
+                <i class="fas fa-home"></i>
+            </div>
+        </nav>
+    </header>
 
-    <!-- Header + Hero + Sections (identique au précédent) -->
-    
-    <!-- Section Inscription -->
-    <section class="section" id="inscription">
-        <h2 class="section-title">تسجيل الدخول / التسجيل</h2>
-        <div style="max-width: 500px; margin: 0 auto;">
-            <div class="feature-card" style="padding: 2rem;">
-                <h3>اختر مستواك</h3>
-                <div style="display: grid; gap: 1rem; margin-top: 1.5rem;">
-                    <a href="inscription.html?niveau=1" class="cta-button" style="background: #4CAF50;">
-                        <i class="fas fa-crown"></i> المستوى 1 - مجاني
-                    </a>
-                    <a href="inscription.html?niveau=2" class="cta-button" style="background: #ff6b35;">
-                        <i class="fas fa-star"></i> المستوى 2 - 99€
-                    </a>
-                    <a href="inscription.html?niveau=3" class="cta-button" style="background: #1e3c72;">
-                        <i class="fas fa-gem"></i> المستوى 3 - 199€
-                    </a>
-                </div>
-                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-                    <i class="fas fa-check-circle"></i> المستوى 1 مجاني تماماً
-                </p>
+    <!-- Section Accueil -->
+    <section id="accueil" class="section active">
+        <div class="card">
+            <h1 class="section-title">🎓 تعلم القرآن الكريم</h1>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem; color: #666;">
+                اختر مستواك وابدأ رحلتك مع القرآن
+            </p>
+            <div class="niveaux-grid">
+                <button class="niveau-btn niveau-gratuit" onclick="showSection('inscription', 1)">
+                    <i class="fas fa-crown" style="font-size: 2.5rem;"></i>
+                    <div>المستوى 1</div>
+                    <div style="font-size: 1.5rem; font-weight: 700;">مجاني 🆓</div>
+                </button>
+                <button class="niveau-btn niveau-payant" onclick="showSection('inscription', 2)">
+                    <i class="fas fa-star" style="font-size: 2.5rem;"></i>
+                    <div>المستوى 2</div>
+                    <div style="font-size: 1.5rem; font-weight: 700;">99€</div>
+                </button>
+                <button class="niveau-btn niveau-payant" onclick="showSection('inscription', 3)">
+                    <i class="fas fa-gem" style="font-size: 2.5rem;"></i>
+                    <div>المستوى 3</div>
+                    <div style="font-size: 1.5rem; font-weight: 700;">199€</div>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Scripts -->
+    <!-- Section Inscription -->
+    <section id="inscription" class="section">
+        <div class="card">
+            <h2 class="section-title" id="inscriptionTitle">التسجيل في المستوى</h2>
+            <div id="message" class="message"></div>
+            
+            <form id="inscriptionForm">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="nom" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" id="telephone" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="password" class="form-input" required>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    إتمام التسجيل
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Section Client -->
+    <section id="client" class="section">
+        <div class="card">
+            <h2 class="section-title">لوحة التحكم الخاصة بك</h2>
+            <div class="client-dashboard">
+                <div class="client-card">
+                    <div style="font-size: 2rem;">👤</div>
+                    <div id="nomClient">-</div>
+                </div>
+                <div class="client-card">
+                    <div style="font-size: 2rem;">📧</div>
+                    <div id="emailClient">-</div>
+                </div>
+                <div class="client-card">
+                    <div style="font-size: 2rem;">📱</div>
+                    <div id="telClient">-</div>
+                </div>
+                <div class="client-card">
+                    <div style="font-size: 2rem;">⭐</div>
+                    <div id="niveauClient">-</div>
+                </div>
+            </div>
+            
+            <div class="cours-list">
+                <h3 style="margin-bottom: 1rem; color: #1e3c72;">📚 الدورات المتاحة لك:</h3>
+                <div id="coursList"></div>
+            </div>
+            
+            <button class="submit-btn" onclick="showSection('accueil')" style="margin-top: 2rem;">
+                العودة للصفحة الرئيسية
+            </button>
+        </div>
+    </section>
+
     <script>
-        // Script menu + scroll (identique)
+        let currentNiveau = 1;
+        let clientData = null;
+
+        // Navigation entre sections
+        function showSection(sectionId, niveau = 1) {
+            // Cacher toutes les sections
+            document.querySelectorAll('.section').forEach(s => {
+                s.classList.remove('active');
+                s.style.display = 'none';
+            });
+            
+            // Afficher la section demandée
+            const targetSection = document.getElementById(sectionId);
+            targetSection.style.display = 'flex';
+            targetSection.classList.add('active');
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+            
+            if (sectionId === 'inscription') {
+                currentNiveau = niveau;
+                document.getElementById('inscriptionTitle').textContent = 
+                    niveau == 1 ? 'التسجيل في المستوى 1 (مجاني)' : 
+                    `التسجيل في المستوى ${niveau}`;
+                document.getElementById('submitBtn').textContent = 
+                    niveau == 1 ? 'تسجيل مجاني' : `دفع وتسجيل`;
+            }
+        }
+
+        // Formulaire inscription
+        document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const data = {
+                nom: document.getElementById('nom').value,
+                email: document.getElementById('email').value,
+                telephone: document.getElementById('telephone').value,
+                password: document.getElementById('password').value,
+                niveau: currentNiveau,
+                date: new Date().toLocaleString('ar')
+            };
+
+            const submitBtn = document.getElementById('submitBtn');
+            const message = document.getElementById('message');
+            
+            submitBtn.textContent = '⏳ جاري الإرسال...';
+            submitBtn.disabled = true;
+
+            // Simulation envoi email + inscription
+            setTimeout(() => {
+                clientData = data;
+                localStorage.setItem('clientQuran', JSON.stringify(data));
+                
+                message.style.display = 'block';
+                message.className = 'success';
+                message.innerHTML = `
+                    ✅ <strong>تم التسجيل بنجاح!</strong><br><br>
+                    📧 <strong>تم إرسال بيانات الدخول إلى بريدك:</strong><br>
+                    👤 <strong>البريد (Identifiant):</strong> ${data.email}<br>
+                    🔑 <strong>كلمة المرور:</strong> ${data.password}<br>
+                    ⭐ <strong>المستوى:</strong> ${data.niveau}<br><br>
+                    <button onclick="showClientDashboard()" class="submit-btn" style="padding: 1rem 2rem; display: inline-block;">
+                        🚀 دخول لوحة التحكم
+                    </button>
+                `;
+            }, 1500);
+        });
+
+        // Afficher dashboard client
+        function showClientDashboard() {
+            if (clientData) {
+                document.getElementById('nomClient').textContent = clientData.nom;
+                document.getElementById('emailClient').textContent = clientData.email;
+                document.getElementById('telClient').textContent = clientData.telephone;
+                document.getElementById('niveauClient').textContent = `المستوى ${clientData.niveau}`;
+                
+                const cours = {
+                    1: ['📖 تجويد أساسي', '📖 تلاوة السور القصيرة', '📖 مخارج الحروف'],
+                    2: ['📖 تجويد متقدم', '📖 حفظ السور المتوسطة', '📖 قواعد التجويد'],
+                    3: ['📖 حفظ كامل للقرآن', '📖 تفسير القرآن', '📖 تجويد احترافي']
+                };
+                
+                document.getElementById('coursList').innerHTML = 
+                    cours[clientData.niveau].map(c => `<div class="cours-item">${c}</div>`).join('');
+                
+                showSection('client');
+            }
+        }
+
+        // Initialisation
+        document.getElementById('accueil').classList.add('active');
     </script>
 </body>
 </html>
