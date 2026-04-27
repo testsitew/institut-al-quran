@@ -131,3 +131,88 @@ body.single-page {
     background: #f8f9fa;
     padding: 1rem 0;
 }
+/* AJOUTER À LA FIN DE style.css existant */
+
+/* Page inscription/connexion */
+.page-hero {
+    background: linear-gradient(135deg, var(--primary-gold), var(--primary-green));
+    color: white;
+    padding: 120px 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.card-register, .card-login {
+    border: none !important;
+    border-radius: 25px !important;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.18) !important;
+    overflow: hidden;
+    background: white;
+}
+
+.btn-register, .btn-login, .btn-primary-custom {
+    background: linear-gradient(45deg, var(--primary-gold), #FAD02C) !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 15px 35px !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    color: white !important;
+    box-shadow: 0 10px 30px rgba(212,175,55,0.4) !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-register:hover, .btn-login:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 15px 40px rgba(212,175,55,0.6) !important;
+    color: white !important;
+}
+
+.form-control, .form-select {
+    border-radius: 15px !important;
+    border: 2px solid #e9ecef !important;
+    padding: 15px 20px !important;
+    font-size: 1.1rem !important;
+    height: 55px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-gold) !important;
+    box-shadow: 0 0 0 0.25rem rgba(212,175,55,0.25) !important;
+}
+
+.breadcrumb-custom {
+    background: rgba(255,255,255,0.95) !important;
+    backdrop-filter: blur(15px) !important;
+    padding: 1.5rem !important;
+    border-radius: 20px !important;
+    margin-bottom: 3rem !important;
+}
+
+.breadcrumb-item a {
+    color: var(--primary-green) !important;
+    text-decoration: none !important;
+    font-weight: 600;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.custom-alert {
+    animation: fadeInRight 0.4s ease !important;
+    z-index: 9999 !important;
+    border: none !important;
+    border-radius: 15px !important;
+}
+
+.login-divider {
+    position
